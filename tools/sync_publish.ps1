@@ -28,7 +28,7 @@ function Assert-UnderPath {
 }
 
 function Get-NextPatchVersion {
-    $tags = (& git -c "safe.directory=$RepoRoot" tag --list "v[0-9]*.[0-9]*.[0-9]*") | Where-Object { $_ -match '^v(\d+)\.(\d+)\.(\d+)$' }
+    $tags = (& git -c "safe.directory=$RepoRoot" -C $RepoRoot tag --list "v[0-9]*.[0-9]*.[0-9]*") | Where-Object { $_ -match '^v(\d+)\.(\d+)\.(\d+)$' }
     $versions = foreach ($tag in $tags) {
         if ($tag -match '^v(\d+)\.(\d+)\.(\d+)$') {
             [pscustomobject]@{ Tag = $tag; Major = [int]$Matches[1]; Minor = [int]$Matches[2]; Patch = [int]$Matches[3] }

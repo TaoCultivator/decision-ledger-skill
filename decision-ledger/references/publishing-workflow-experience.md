@@ -22,6 +22,7 @@ trigger_signals:
   - UnicodeDecodeError gbk
   - __pycache__ contains local path
   - github.com port 443 timeout
+  - wrong version tag from another repository
 root_cause: Several failures came from environment-specific behavior rather than repository content.
 resolution: Check known experience first, verify current conditions with read-only commands, then apply the narrow fix.
 avoid:
@@ -39,6 +40,7 @@ keywords:
   - gh repo create
   - skill publishing
   - sync_publish.ps1
+  - git tag --list
 validation:
   - Skill is valid!
   - AST_OK
@@ -64,6 +66,7 @@ A public skill mirror was created and moved from a project workspace to a dedica
 - `Get-ChildItem -Include` in cleanup removed more than intended. Use explicit extension filtering such as `Where-Object { $_.Extension -in @(".pyc", ".pyo") }` before `Remove-Item`.
 - Python validation failed with `UnicodeDecodeError` under Windows GBK defaults. Set `PYTHONUTF8=1` before running validators over UTF-8 Markdown.
 - `git ls-remote` timed out after publication. Verify the remote tag with `gh api repos/<owner>/<repo>/git/ref/tags/<tag>` before assuming the push failed.
+- A version tag was generated from the wrong repository because the tag-discovery command used `safe.directory` without `-C <repo>`. Always run tag discovery with both `safe.directory` and `-C $RepoRoot`.
 
 ## Correct First Move
 
