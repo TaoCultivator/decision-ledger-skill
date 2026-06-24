@@ -6,12 +6,13 @@ This skill is designed for projects where implementation discussions, accepted d
 
 ## What It Does
 
-- Searches compact project decision ledgers before opening full notes.
+- Searches compact project decision ledgers and historical experience memory before opening full notes.
 - Separates `proposed`, `accepted`, and `rejected` decisions.
-- Treats rejected approaches as guardrails for future work.
+- Treats rejected approaches and repeatable operational experiences as guardrails for future work.
 - Routes relevant skills and CLI tools before substantial discussions or implementation.
 - Keeps context usage low by opening only the most relevant records.
 - Supports evidence-based self-reflection and self-iteration without relying on model intuition alone.
+- Records tool errors, publishing failures, environment quirks, and workflow fixes as searchable experience records.
 
 ## Install
 
@@ -47,10 +48,13 @@ docs/decision-ledger/
 ├── proposed/
 ├── accepted/
 ├── rejected/
+├── experience/
 └── research-reviews/
 ```
 
 The `index.jsonl` file is the first retrieval target. Full notes should stay in the status folders and be opened only when needed for exact wording, validation evidence, or conflict resolution.
+
+Experience memory uses `status=experience` records for repeatable operational lessons. When a known tool, CLI, filesystem, publishing, encoding, credential, or validation failure recurs, search experience records before starting step-by-step diagnosis.
 
 ## Search Helper
 

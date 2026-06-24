@@ -29,7 +29,7 @@ FIELD_WEIGHTS = {
     "path": 8,
 }
 
-STATUS_PRIORITY = {"rejected": 3, "accepted": 2, "proposed": 1}
+STATUS_PRIORITY = {"experience": 4, "rejected": 3, "accepted": 2, "proposed": 1}
 
 
 def flatten(value: Any) -> str:
@@ -111,7 +111,7 @@ def main() -> int:
     parser.add_argument("--project", help="Project metadata filter")
     parser.add_argument("--scope", help="Scope metadata filter")
     parser.add_argument("--module", help="Module metadata filter")
-    parser.add_argument("--status", choices=["proposed", "accepted", "rejected"], help="Status filter")
+    parser.add_argument("--status", choices=["proposed", "accepted", "rejected", "experience"], help="Status filter")
     parser.add_argument("--top", type=int, default=5, help="Number of matches to print")
     parser.add_argument("--json", action="store_true", help="Print JSON lines")
     args = parser.parse_args()
